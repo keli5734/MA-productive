@@ -1,0 +1,32 @@
+function yn = trial(~ ,y, Z, beta, k, p1, p2, c, delta_d, K_delta, q1, q2, d, delta_M, m, gamma,delta_I)
+
+ylag1 = Z(:,1);
+yn = zeros(5,1);
+
+yn(1) =  -beta * y(1) * y(4);
+yn(2) =  beta * y(1) * y(4) - k * y(2);
+yn(3) =  k * y(2) - delta_I * y(3) - delta_M * y(5)^2 / (m^2 + y(5)^2) * y(3);
+yn(4) =  p1 * y(3) + p2 * y(5) - c * y(4) - gamma * y(4) * y(5);
+yn(5) =  q1 * ylag1(3) + q2 * y(5) * y(3) - d * y(5);
+end 
+
+
+% delta_d /(K_delta + y(3)) * y(3)
+% - 1e-4 * y(4) * y(5) % macrophages uptake virions
+% delta_M * y(5)^2 / (m^2 + y(5)^2) * y(3)
+% c * y(5)^2 / (m^2 + y(5)^2) * y(4)
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+function v = histfun(t,beta, k, p1, p2, c, delta_d, K_delta, q1, q2, d, delta_M, m,gamma,delta_I)
+       v =  zeros(5,1);
+       v(1) = 0;
+       v(2) = 0;
+       v(3) = 0;
+       v(4) = 0;
+       v(5) = 0;
+end 
